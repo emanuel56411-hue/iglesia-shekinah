@@ -1,9 +1,29 @@
 const menuButton = document.querySelector(".menu-button");
 const mainMenu = document.querySelector("#main-menu");
+const themeToggle = document.querySelector(".theme-toggle");
 const contactForm = document.querySelector(".contact-form");
 const helpForm = document.querySelector(".help-form");
 const helpBoard = document.querySelector(".help-board");
 const coordinatorPhone = "50364465489";
+
+const savedTheme = localStorage.getItem("shekinah-theme");
+if (savedTheme === "dark") {
+  document.body.classList.add("dark-mode");
+}
+
+function syncThemeButton() {
+  const isDark = document.body.classList.contains("dark-mode");
+  themeToggle.textContent = isDark ? "Claro" : "Oscuro";
+  themeToggle.setAttribute("aria-label", isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
+}
+
+syncThemeButton();
+
+themeToggle.addEventListener("click", () => {
+  const isDark = document.body.classList.toggle("dark-mode");
+  localStorage.setItem("shekinah-theme", isDark ? "dark" : "light");
+  syncThemeButton();
+});
 
 menuButton.addEventListener("click", () => {
   const isOpen = mainMenu.classList.toggle("is-open");
@@ -22,7 +42,7 @@ contactForm.addEventListener("submit", (event) => {
   const formData = new FormData(contactForm);
   const name = formData.get("nombre") || "Visitante";
   const contact = formData.get("contacto") || "Sin contacto";
-  const message = formData.get("mensaje") || "Quiero más información.";
+  const message = formData.get("mensaje") || "Quiero mas informacion.";
   const whatsappMessage = `Hola, soy ${name}. Mi contacto es ${contact}. ${message}`;
 
   window.open(
@@ -42,7 +62,6 @@ helpForm.addEventListener("submit", (event) => {
   card.className = "help-card";
 
   const tag = document.createElement("span");
-  tag.className = "tag";
   tag.textContent = type;
 
   const title = document.createElement("h3");

@@ -3,176 +3,355 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Sitio web de Iglesia Bautista Shekinah." />
+    <meta
+      name="description"
+      content="Sitio web de Iglesia Bautista Shekinah: horarios, ubicacion, ministerios, ayuda, donaciones y redes sociales."
+    />
     <title>Iglesia Bautista Shekinah</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="#inicio">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
         <img class="brand-logo" src="assets/logo-shekinah.png" alt="Logo de Iglesia Bautista Shekinah" />
         <span>
           <strong>Iglesia Bautista Shekinah</strong>
-          <small>La presencia de Dios desde El Salvador</small>
+          <small>San Juan Opico</small>
         </span>
       </a>
+
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-menu">
-        <span></span><span></span><span></span> Menú
+        <span></span>
+        <span></span>
+        <span></span>
+        Menu
       </button>
-      <nav id="main-menu" class="main-nav">
-        <a href="#reuniones">Reuniones</a>
-        <a href="#eventos">Eventos</a>
+
+      <nav id="main-menu" class="main-nav" aria-label="Navegacion principal">
+        <a href="#somos">Somos</a>
+        <a href="#reuniones">Horarios</a>
+        <a href="#ubicacion">Ubicacion</a>
         <a href="#ministerios">Ministerios</a>
-        <a href="#ubicacion">Cómo llegar</a>
-        <a href="#redes">Redes</a>
         <a href="#ayuda">Ayuda</a>
-        <a class="nav-action" href="#contacto">Contacto</a>
+        <a href="#redes">Redes</a>
+        <button class="theme-toggle" type="button" aria-label="Cambiar modo oscuro">Oscuro</button>
       </nav>
     </header>
 
     <main>
       <section id="inicio" class="hero">
-        <div class="hero-content">
-          <p class="eyebrow">Bienvenido a casa</p>
-          <h1>Iglesia Bautista Shekinah</h1>
-          <p>Somos una comunidad cristiana en San Juan Opico donde cada persona puede conocer a Dios, recibir apoyo y servir con propósito.</p>
-          <div class="hero-actions">
-            <a class="button primary" href="#reuniones">Ver horarios</a>
-            <a class="button secondary" href="#ubicacion">Cómo llegar</a>
+        <div class="hero-inner">
+          <div class="hero-content">
+            <p class="eyebrow">Biblia, adoracion y servicio</p>
+            <h1>Iglesia Bautista Shekinah</h1>
+            <p>
+              Una comunidad cristiana en San Juan Opico donde puedes acercarte a Dios,
+              aprender su Palabra y caminar acompanado por una familia de fe.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#reuniones">Ver horarios</a>
+              <a class="button secondary" href="#ubicacion">Como llegar</a>
+            </div>
+          </div>
+
+          <aside class="hero-panel" aria-label="Resumen de reuniones">
+            <span>Bienvenido a casa</span>
+            <strong>Domingo</strong>
+            <p>8:30 a.m. y 10:00 a.m.</p>
+            <div><small>Martes</small><small>Estudio exegetico</small></div>
+            <div><small>Jueves</small><small>Estudio biblico</small></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="quick-strip" aria-label="Accesos rapidos">
+        <a href="#reuniones">
+          <span>Domingo</span>
+          <strong>8:30 a.m. y 10:00 a.m.</strong>
+        </a>
+        <a href="#ubicacion">
+          <span>Ubicacion</span>
+          <strong>QJRR+HH2, San Juan Opico</strong>
+        </a>
+        <a href="https://wa.me/50364465489" target="_blank" rel="noopener noreferrer">
+          <span>Coordinacion</span>
+          <strong>+503 6446 5489</strong>
+        </a>
+      </section>
+
+      <section id="somos" class="section identity-section" aria-labelledby="somos-title">
+        <div class="section-inner identity-layout">
+          <div class="section-copy">
+            <p class="eyebrow">Somos Shekinah</p>
+            <h2 id="somos-title">Una iglesia para conocer a Cristo, crecer y servir</h2>
+            <p>
+              Creemos que la iglesia debe ser un lugar cercano, claro y lleno de esperanza:
+              una familia que abre la Biblia, adora a Dios y acompana a las personas en
+              cada etapa de la vida.
+            </p>
+          </div>
+
+          <div class="identity-grid">
+            <article><span>01</span><strong>Palabra</strong><p>Estudiamos la Biblia para vivir con direccion y verdad.</p></article>
+            <article><span>02</span><strong>Adoracion</strong><p>Nos reunimos para exaltar a Dios con gratitud y reverencia.</p></article>
+            <article><span>03</span><strong>Comunidad</strong><p>Nadie tiene que caminar solo; aqui buscamos acompanarnos.</p></article>
+            <article><span>04</span><strong>Servicio</strong><p>Servimos con orden, amor y responsabilidad en cada ministerio.</p></article>
           </div>
         </div>
       </section>
 
-      <section id="reuniones" class="section band-light">
-        <div class="section-inner split">
-          <div>
-            <p class="eyebrow">Reuniones semanales</p>
-            <h2>Horarios para acompañarnos</h2>
-            <p>Estos horarios ayudan a que cada visitante sepa exactamente qué día llegar, a qué hora inicia y qué tipo de reunión encontrará.</p>
+      <section class="section scripture-section" aria-labelledby="palabra-title">
+        <div class="section-inner scripture-layout">
+          <div class="section-copy">
+            <p class="eyebrow">Palabra para tu vida</p>
+            <h2 id="palabra-title">Aqui tambien hay un lugar para ti</h2>
+            <p>
+              Si vienes cansado, con preguntas o buscando empezar de nuevo, no tienes que
+              acercarte perfecto. Puedes venir como estas, escuchar la Palabra y caminar
+              acompanado por una familia de fe.
+            </p>
+            <a class="button dark" href="#reuniones">Quiero congregarme</a>
           </div>
+
+          <div class="scripture-grid">
+            <article>
+              <span>Mateo 18:20</span>
+              <p>Cuando nos reunimos en el nombre de Cristo, recordamos que El esta presente entre su pueblo.</p>
+            </article>
+            <article>
+              <span>2 Timoteo 3:16-17</span>
+              <p>La Escritura nos ensena, corrige y prepara para vivir una fe firme y util para servir.</p>
+            </article>
+            <article>
+              <span>Salmos 150:6</span>
+              <p>Todo lo que respira puede alabar al Senor; tu voz tambien tiene lugar delante de Dios.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="reuniones" class="section section-tight">
+        <div class="section-inner two-column">
+          <div class="section-copy">
+            <p class="eyebrow">Reuniones</p>
+            <h2>Horarios claros para acompanarnos</h2>
+            <p>
+              Cada reunion esta organizada para que cualquier persona sepa cuando llegar
+              y que actividad encontrara.
+            </p>
+          </div>
+
           <div class="schedule-list">
-            <article class="info-card"><span class="tag">Martes</span><h3>Reunión general</h3><p>7:00 p.m. a 8:30 p.m.</p></article>
-            <article class="info-card"><span class="tag">Jueves</span><h3>Reunión general</h3><p>7:00 p.m. a 8:30 p.m.</p></article>
-            <article class="info-card"><span class="tag">Sábado</span><h3>Culto de jóvenes</h3><p>4:30 p.m. a 6:00 p.m.</p></article>
-            <article class="info-card"><span class="tag">Domingo</span><h3>Primer culto</h3><p>8:30 a.m. a 9:40 a.m.</p></article>
-            <article class="info-card"><span class="tag">Domingo</span><h3>Segundo culto</h3><p>10:00 a.m. a 11:30 a.m.</p></article>
+            <article class="schedule-item">
+              <span>Martes</span>
+              <strong>Estudio exegetico</strong>
+              <time>7:00 p.m. - 8:30 p.m.</time>
+            </article>
+            <article class="schedule-item">
+              <span>Jueves</span>
+              <strong>Estudio biblico</strong>
+              <time>7:00 p.m. - 8:30 p.m.</time>
+            </article>
+            <article class="schedule-item">
+              <span>Sabado</span>
+              <strong>Culto de jovenes</strong>
+              <time>4:30 p.m. - 6:00 p.m.</time>
+            </article>
+            <article class="schedule-item">
+              <span>Domingo</span>
+              <strong>Primer culto devocional</strong>
+              <time>8:30 a.m. - 9:40 a.m.</time>
+            </article>
+            <article class="schedule-item">
+              <span>Domingo</span>
+              <strong>Segundo culto devocional</strong>
+              <time>10:00 a.m. - 11:30 a.m.</time>
+            </article>
           </div>
         </div>
       </section>
 
-      <section id="eventos" class="section">
-        <div class="section-inner">
-          <p class="eyebrow">Próximas actividades</p>
-          <h2>Próximos eventos por anunciar</h2>
-          <article class="announcement-card">
-            <span class="tag">Aviso</span>
-            <h3>Muy pronto compartiremos nuevas actividades</h3>
-            <p>En este espacio se publicarán vigilias, cultos especiales, jornadas de ayuda, reuniones de jóvenes y actividades familiares.</p>
-            <a class="button dark" href="#redes">Ver redes sociales</a>
+      <section id="ubicacion" class="section tinted">
+        <div class="section-inner two-column location-grid">
+          <div class="section-copy">
+            <p class="eyebrow">Como llegar</p>
+            <h2>Estamos en San Juan Opico</h2>
+            <p>
+              Usa el codigo <strong>QJRR+HH2, San Juan Opico</strong> para abrir la ruta
+              desde Google Maps.
+            </p>
+            <div class="inline-actions">
+              <a class="button primary" href="https://www.google.com/maps/search/?api=1&query=QJRR%2BHH2%2C%20San%20Juan%20Opico" target="_blank" rel="noopener noreferrer">
+                Abrir Google Maps
+              </a>
+              <a class="button ghost" href="https://wa.me/50364465489" target="_blank" rel="noopener noreferrer">
+                Preguntar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <article class="location-card">
+            <span>Ubicacion</span>
+            <strong>QJRR+HH2</strong>
+            <p>San Juan Opico, La Libertad, El Salvador</p>
           </article>
         </div>
       </section>
 
-      <section id="ministerios" class="section band-strong">
+      <section id="eventos" class="section compact">
+        <div class="section-inner updates-layout">
+          <div class="section-heading">
+            <p class="eyebrow">Eventos</p>
+            <h2>Vida de iglesia y proximos anuncios</h2>
+          </div>
+          <div class="updates-grid">
+            <article>
+              <span>Proximamente</span>
+              <h3>Eventos por anunciar</h3>
+              <p>En este espacio se publicaran vigilias, cultos especiales y actividades familiares.</p>
+            </article>
+            <article>
+              <span>Accion social</span>
+              <h3>Ayuda y donaciones</h3>
+              <p>Coordinamos apoyo para oracion, viveres, visitas y necesidades especiales.</p>
+            </article>
+            <article>
+              <span>Redes</span>
+              <h3>Anuncios recientes</h3>
+              <p>Sigue Facebook e Instagram para ver avisos, fotos y momentos de la congregacion.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="ministerios" class="section section-tight">
         <div class="section-inner">
-          <p class="eyebrow">Áreas de servicio</p>
-          <h2>Ministerios donde puedes servir</h2>
+          <div class="section-heading">
+            <p class="eyebrow">Servicio</p>
+            <h2>Ministerios donde puedes ser parte</h2>
+          </div>
+
           <div class="ministry-grid">
-            <article><h3>Acomodación</h3><p>Apoyo para recibir, ubicar y atender a las personas que visitan la iglesia.</p></article>
-            <article><h3>Alabanza</h3><p>Servicio musical y técnico para acompañar cada culto.</p></article>
-            <article><h3>Culto de jóvenes</h3><p>Espacios para amistad, discipulado y participación de los jóvenes.</p></article>
-            <article><h3>Familia</h3><p>Acompañamiento y actividades para fortalecer los hogares.</p></article>
-            <article><h3>Visita a enfermos</h3><p>Oración, compañía y apoyo para quienes pasan momentos difíciles.</p></article>
-            <article><h3>Donaciones</h3><p>Organización de víveres, ayuda y recursos para entregarlos con orden.</p></article>
+            <article><span>01</span><h3>Diaconado y oficiales</h3><p>Apoyo espiritual, orden y servicio dentro de la iglesia.</p></article>
+            <article><span>02</span><h3>Alabanza</h3><p>Servicio musical y tecnico para acompanar cada culto.</p></article>
+            <article><span>03</span><h3>Acomodacion</h3><p>Recibir, orientar y ubicar a quienes nos visitan.</p></article>
+            <article><span>04</span><h3>Escuela biblica</h3><p>Ensenanza organizada para crecer en la Palabra de Dios.</p></article>
+            <article><span>05</span><h3>Aseo</h3><p>Cuidado, limpieza y preparacion de los espacios de la iglesia.</p></article>
           </div>
-          <div class="ministry-cta">
-            <p>Si quieres ser parte de un ministerio, escríbenos al número de coordinación.</p>
-            <a class="button primary" href="https://wa.me/50364465489" target="_blank" rel="noopener noreferrer">WhatsApp +503 6446 5489</a>
+
+          <div class="callout">
+            <p>Quieres servir en un ministerio?</p>
+            <a class="button primary" href="https://wa.me/50364465489" target="_blank" rel="noopener noreferrer">
+              Escribir al encargado
+            </a>
           </div>
         </div>
       </section>
 
-      <section id="ubicacion" class="section location-section">
-        <div class="section-inner split">
-          <div>
-            <p class="eyebrow">Cómo llegar</p>
-            <h2>Encuéntranos en San Juan Opico</h2>
-            <p>Usa el código de Google Maps <strong>QJRR+HH2, San Juan Opico</strong> para abrir la ruta desde tu teléfono.</p>
-            <div class="contact-actions">
-              <a class="button primary" href="https://www.google.com/maps/search/?api=1&query=QJRR%2BHH2%2C%20San%20Juan%20Opico" target="_blank" rel="noopener noreferrer">Abrir en Google Maps</a>
-              <a class="button light" href="#reuniones">Ver horarios</a>
-            </div>
-          </div>
-          <article class="map-card"><span class="tag">Ubicación</span><h3>QJRR+HH2</h3><p>San Juan Opico, La Libertad, El Salvador</p></article>
-        </div>
-      </section>
-
-      <section id="redes" class="section band-light">
-        <div class="section-inner social-layout">
-          <div>
-            <p class="eyebrow">Redes sociales</p>
-            <h2>También puedes conocernos en línea</h2>
-            <p>Síguenos para ver anuncios, transmisiones, fotos de actividades y mensajes para compartir.</p>
-          </div>
-          <div class="social-cards">
-            <a class="social-card instagram" href="https://www.instagram.com/shekinahelsalvador" target="_blank" rel="noopener noreferrer"><span>Instagram</span><strong>@shekinahelsalvador</strong></a>
-            <a class="social-card facebook" href="https://www.facebook.com/share/1L6qRECBoy/" target="_blank" rel="noopener noreferrer"><span>Facebook</span><strong>Shekinah Versalles</strong></a>
-          </div>
-        </div>
-      </section>
-
-      <section id="ayuda" class="section band-light">
+      <section id="ayuda" class="section tinted">
         <div class="section-inner help-layout">
-          <div>
+          <div class="section-copy">
             <p class="eyebrow">Ayuda y donaciones</p>
-            <h2>Un lugar para pedir apoyo y servir con orden</h2>
-            <p>Las personas pueden compartir una necesidad de oración, víveres u otra ayuda. Quienes deseen apoyar pueden comunicarse con el encargado.</p>
-            <a class="button dark" href="https://wa.me/50364465489" target="_blank" rel="noopener noreferrer">Hablar con encargado</a>
+            <h2>Un espacio para pedir apoyo y coordinar ayuda</h2>
+            <p>
+              Puedes compartir una necesidad de oracion, viveres, visita u otra ayuda.
+              Para hacerlo publico para todos, despues conviene conectarlo con Supabase.
+            </p>
           </div>
-          <div class="help-board">
-            <article class="help-card"><span class="tag">Oración</span><h3>Petición de ejemplo</h3><p>Una familia solicita oración y acompañamiento durante la semana.</p></article>
-            <article class="help-card"><span class="tag">Víveres</span><h3>Ayuda alimentaria</h3><p>Se puede coordinar entrega con el encargado de donaciones.</p></article>
+
+          <div class="help-board" aria-live="polite">
+            <article class="help-card">
+              <span>Oracion</span>
+              <h3>Peticion de ejemplo</h3>
+              <p>Una familia solicita oracion y acompanamiento durante la semana.</p>
+            </article>
+            <article class="help-card">
+              <span>Viveres</span>
+              <h3>Ayuda alimentaria</h3>
+              <p>Se puede coordinar entrega con el encargado de donaciones.</p>
+            </article>
           </div>
-          <form class="help-form">
-            <label>Nombre <input type="text" name="nombre-ayuda" placeholder="Tu nombre" required /></label>
-            <label>Tipo de ayuda
+
+          <form class="help-form" aria-label="Formulario de ayuda">
+            <label>
+              Nombre
+              <input type="text" name="nombre-ayuda" placeholder="Tu nombre" required />
+            </label>
+            <label>
+              Tipo de ayuda
               <select name="tipo-ayuda" required>
-                <option value="Oración">Oración</option>
-                <option value="Víveres">Víveres</option>
+                <option value="Oracion">Oracion</option>
+                <option value="Viveres">Viveres</option>
                 <option value="Visita">Visita a enfermo</option>
                 <option value="Otra ayuda">Otra ayuda</option>
               </select>
             </label>
-            <label>Mensaje <textarea name="mensaje-ayuda" rows="4" placeholder="Escribe la necesidad o forma de ayudar" required></textarea></label>
+            <label>
+              Mensaje
+              <textarea name="mensaje-ayuda" rows="3" placeholder="Escribe la necesidad o forma de ayudar" required></textarea>
+            </label>
             <button class="button dark" type="submit">Publicar solicitud</button>
           </form>
         </div>
       </section>
 
+      <section id="redes" class="section section-tight">
+        <div class="section-inner social-layout">
+          <div class="section-copy">
+            <p class="eyebrow">Redes</p>
+            <h2>Conectate con Shekinah</h2>
+            <p>Siguenos para ver anuncios, fotos de actividades y mensajes para compartir.</p>
+          </div>
+          <div class="social-cards">
+            <a class="social-card instagram" href="https://www.instagram.com/shekinahelsalvador" target="_blank" rel="noopener noreferrer">
+              <span>Instagram</span>
+              <strong>@shekinahelsalvador</strong>
+            </a>
+            <a class="social-card facebook" href="https://www.facebook.com/share/1L6qRECBoy/" target="_blank" rel="noopener noreferrer">
+              <span>Facebook</span>
+              <strong>Shekinah Versalles</strong>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section id="contacto" class="section contact-section">
         <div class="section-inner contact-layout">
-          <div>
+          <div class="section-copy">
             <p class="eyebrow">Contacto</p>
             <h2>Queremos conocerte</h2>
-            <p>Iglesia Bautista Shekinah<br />Ubicación: QJRR+HH2, San Juan Opico<br />Coordinación: +503 6446 5489<br />Instagram: @shekinahelsalvador<br />Facebook: Shekinah Versalles</p>
-            <div class="contact-actions">
-              <a class="button primary" href="https://www.google.com/maps/search/?api=1&query=QJRR%2BHH2%2C%20San%20Juan%20Opico" target="_blank" rel="noopener noreferrer">Abrir Maps</a>
-              <a class="button dark" href="https://wa.me/50364465489" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-            </div>
+            <p>
+              Iglesia Bautista Shekinah<br />
+              Ubicacion: QJRR+HH2, San Juan Opico<br />
+              Coordinacion: +503 6446 5489
+            </p>
           </div>
-          <form class="contact-form">
-            <label>Nombre <input type="text" name="nombre" autocomplete="name" placeholder="Tu nombre" /></label>
-            <label>Teléfono o correo <input type="text" name="contacto" autocomplete="email" placeholder="Cómo contactarte" /></label>
-            <label>Mensaje <textarea name="mensaje" rows="4" placeholder="Cuéntanos cómo podemos ayudarte"></textarea></label>
-            <button class="button dark" type="submit">Enviar mensaje</button>
+
+          <form class="contact-form" aria-label="Formulario de contacto">
+            <label>
+              Nombre
+              <input type="text" name="nombre" autocomplete="name" placeholder="Tu nombre" />
+            </label>
+            <label>
+              Telefono o correo
+              <input type="text" name="contacto" autocomplete="email" placeholder="Como contactarte" />
+            </label>
+            <label>
+              Mensaje
+              <textarea name="mensaje" rows="3" placeholder="Cuentanos como podemos ayudarte"></textarea>
+            </label>
+            <button class="button dark" type="submit">Enviar por WhatsApp</button>
           </form>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>© 2026 Iglesia Bautista Shekinah. Todos son bienvenidos.</p>
-      <div><a href="#inicio">Inicio</a><a href="#contacto">Contacto</a></div>
+      <p>2026 Iglesia Bautista Shekinah</p>
+      <div>
+        <a href="#inicio">Inicio</a>
+        <a href="#contacto">Contacto</a>
+      </div>
     </footer>
 
     <script src="script.js"></script>
