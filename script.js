@@ -3,8 +3,51 @@ const mainMenu = document.querySelector("#main-menu");
 const themeToggle = document.querySelector(".theme-toggle");
 const contactForm = document.querySelector(".contact-form");
 const helpForm = document.querySelector(".help-form");
-const helpBoard = document.querySelector(".help-board");
-const coordinatorPhone = "50364465489";
+const siteHeader = document.querySelector("#site-header");
+const backToTop = document.querySelector(".back-to-top");
+const navLinks = document.querySelectorAll("[data-nav]");
+
+const coordinatorPhone = document.body.dataset.phone || "";
+const phoneDisplay = document.body.dataset.phoneDisplay || coordinatorPhone;
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const supabaseUrl = document.body.dataset.supabaseUrl || "";
+const supabaseAnonKey = document.body.dataset.supabaseAnonKey || "";
+const supabaseClient =
+  supabaseUrl && supabaseAnonKey && window.supabase
+    ? window.supabase.createClient(supabaseUrl, supabaseAnonKey)
+    : null;
+
+function initPhoneLinks() {
+  if (!coordinatorPhone) return;
+
+  document.querySelectorAll("[data-phone-display]").forEach((element) => {
+    element.textContent = phoneDisplay;
+  });
+
+  document.querySelectorAll("[data-wa-link]").forEach((link) => {
+    link.href = `https://wa.me/${coordinatorPhone}`;
+  });
+}
+
+function openWhatsApp(message) {
+  if (!coordinatorPhone) return;
+
+  window.open(
+    `https://wa.me/${coordinatorPhone}?text=${encodeURIComponent(message)}`,
+    "_blank",
+    "noopener,noreferrer"
+  );
+}
+
+async function saveToSupabase(table, payload) {
+  if (!supabaseClient) return;
+
+  const { error } = await supabaseClient.from(table).insert(payload);
+  if (error) {
+    console.warn(`Supabase (${table}):`, error.message);
+  }
+}
 
 const savedTheme = localStorage.getItem("shekinah-theme");
 if (savedTheme === "dark") {
@@ -13,11 +56,13 @@ if (savedTheme === "dark") {
 
 function syncThemeButton() {
   const isDark = document.body.classList.contains("dark-mode");
-  themeToggle.textContent = isDark ? "Claro" : "Oscuro";
+  const label = themeToggle.querySelector("span");
+  if (label) label.textContent = isDark ? "Claro" : "Oscuro";
   themeToggle.setAttribute("aria-label", isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
 }
 
 syncThemeButton();
+initPhoneLinks();
 
 themeToggle.addEventListener("click", () => {
   const isDark = document.body.classList.toggle("dark-mode");
@@ -37,7 +82,57 @@ mainMenu.addEventListener("click", (event) => {
   }
 });
 
-contactForm.addEventListener("submit", (event) => {
+window.addEventListener(
+  "scroll",
+  () => {
+    const scrolled = window.scrollY > 20;
+    siteHeader.classList.toggle("scrolled", scrolled);
+    backToTop.hidden = window.scrollY < 400;
+  },
+  { passive: true }
+);
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+});
+
+const sectionIds = Array.from(navLinks).map((link) => link.getAttribute("href").slice(1));
+const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
+
+function updateActiveNav() {
+  const scrollPos = window.scrollY + siteHeader.offsetHeight + 40;
+  let current = sectionIds[0];
+
+  for (const section of sections) {
+    if (section.offsetTop <= scrollPos) {
+      current = section.id;
+    }
+  }
+
+  navLinks.forEach((link) => {
+    link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
+  });
+}
+
+window.addEventListener("scroll", updateActiveNav, { passive: true });
+updateActiveNav();
+
+const revealElements = document.querySelectorAll(".reveal");
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+);
+
+revealElements.forEach((el) => revealObserver.observe(el));
+
+contactForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const formData = new FormData(contactForm);
   const name = formData.get("nombre") || "Visitante";
@@ -45,41 +140,29 @@ contactForm.addEventListener("submit", (event) => {
   const message = formData.get("mensaje") || "Quiero mas informacion.";
   const whatsappMessage = `Hola, soy ${name}. Mi contacto es ${contact}. ${message}`;
 
-  window.open(
-    `https://wa.me/${coordinatorPhone}?text=${encodeURIComponent(whatsappMessage)}`,
-    "_blank",
-    "noopener,noreferrer"
-  );
+  await saveToSupabase("mensajes_contacto", {
+    nombre: name,
+    contacto: contact,
+    mensaje: message,
+  });
+
+  openWhatsApp(whatsappMessage);
 });
 
-helpForm.addEventListener("submit", (event) => {
+helpForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const formData = new FormData(helpForm);
   const name = formData.get("nombre-ayuda");
-  const type = formData.get("tipo-ayuda");
+  const type = formData.get("tipo-ayuda") || "Ayuda general";
   const message = formData.get("mensaje-ayuda");
-  const card = document.createElement("article");
-  card.className = "help-card";
+  const whatsappMessage = `Hola, solicito ayuda (${type}). Soy ${name}. ${message}`;
 
-  const tag = document.createElement("span");
-  tag.textContent = type;
+  await saveToSupabase("solicitudes_ayuda", {
+    nombre: name,
+    tipo: type,
+    mensaje: message,
+  });
 
-  const title = document.createElement("h3");
-  title.textContent = name;
-
-  const text = document.createElement("p");
-  text.textContent = message;
-
-  const link = document.createElement("a");
-  link.className = "button dark";
-  link.href = `https://wa.me/${coordinatorPhone}?text=${encodeURIComponent(
-    `Hola, quiero ayudar o consultar sobre esta solicitud: ${type} - ${message}`
-  )}`;
-  link.target = "_blank";
-  link.rel = "noopener noreferrer";
-  link.textContent = "Coordinar ayuda";
-
-  card.append(tag, title, text, link);
-  helpBoard.prepend(card);
+  openWhatsApp(whatsappMessage);
   helpForm.reset();
 });
